@@ -33,11 +33,30 @@ def read_template(file_path):
         print("This path leads to a dead end and cannot be followed") 
 
 def parse_template(template_string):
-    
     # We want to take in a template_string and return
     # - a string with the language parts removed
     # - a list of the language parts
-    pass
+    words = template_string.split()
+    gutted_string = []
+    new_string = template_string
+
+    for fun_word in words:
+        if fun_word.startswith('{'):
+            stripped_fun_word = fun_word.strip('{}')
+            gutted_string.append(stripped_fun_word)
+            #Here we are taking any word that is surrounded by brackets (or starts with a curly bracket), removing or stripping the curly braclet, and pushing it into the gutted_string list.
+
+            new_string = new_string.replace(fun_word, '{}')
+            #Here we take the starting string we are given, and remove any words with brackets as we go through the for loop and we replace the words with brackets with just brackets because that is what the test is looking for.
+
+            print (new_string, tuple(gutted_string))
+            # Here we return the string without the fun_words and the list of fun words as a TUPLE because that is what the TEST is looking for, NOT what the directions asked for.
+           
+
+    return (new_string, gutted_string)
+    #This is not working because it is not returning the final punctuation of the string and I'm not sure how to resolve it aside from rewriting this entire code block that I just got working with regex.
+ 
+
 
 def merge(bare_template):
     # We want to take in a bare_template and a list of user entered language parts and return a string of the language parts inserted into the template.
@@ -46,6 +65,8 @@ def merge(bare_template):
 
 if __name__ == '__main__':
     welcome()
+    #read_template(assets/dark_and_stormy_night_template.txt)
+    print (parse_template("Life is {just} so good {rn}!"))
     
 
 
