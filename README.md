@@ -9,7 +9,7 @@ This program reads a Mad-Libs file, asks the user to put in parts of speech from
 run with python madlib.py and test_madlib.py
 
 ## References: 
-
+Worked with Brian, Marin, Brendon, and shared the code with the class 
 
 ## Reflections:
 This was really interesting practice!
