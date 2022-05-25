@@ -1,5 +1,6 @@
 # Welcoming the user
 
+from ast import parse
 from os import removedirs
 import re
 
@@ -31,7 +32,8 @@ def read_template(file_path):
             return contents.strip()
             print (contents)
     except FileNotFoundError:
-        print("This path leads to a dead end and cannot be followed") 
+       raise FileNotFoundError("This path leads to a dead end and cannot be followed") 
+        #We need to except this error based on what we did in class but we needed to raise this as an exception based on the test :/
 
 def parse_template(template_string):
     # We want to take in a template_string and return
@@ -50,19 +52,21 @@ def parse_template(template_string):
 
 def merge(bare_template, entered_parts):
     # We want to take in a bare_template and a list of user entered language parts and return a string of the language parts inserted into the template.
-    lol_word = list(entered_parts)
-    funny_string = re.sub("{}",lol_word, bare_template)
-    # Based on the regex substitution in the parse_template function, this should replace the {} with the entered_part words in the bare_template string
+    
+    funny_string = bare_template.format(*entered_parts)
+    #The * for the args pretty much lets us move between the curly brackets and iterate through those. This is because the things in the tuple don't have keys for implicit matching
+    #A tuple is iterable - you don't need to make a list.
     return funny_string
 
 
 if __name__ == '__main__':
     welcome()
-    #read_template(assets/dark_and_stormy_night_template.txt)
-    #print (parse_template("Life is {just} so good {rn}!"))
-    print (merge("It was a {} and {} {}.", ("dark", "stormy", "night")))
+    # read_template()
+    # parse_template()
+    # merge()
+    # print (merge("It was a {} and {} {}.", ("dark", "stormy", "night")))
 
 
 #You need to "control the flow" of your script (or file) by calling all of your functions this dunder main gate (not mifflin)
-# When this runs, it will call the functions listed under it.
+
 
