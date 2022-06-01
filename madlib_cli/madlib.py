@@ -49,6 +49,9 @@ def parse_template(template_string):
     return gutted_string, words
     # Note here that by getting this to work with regex, you do NOT need to look at every character in the string to check for the open or close characters. 
 
+def user_inputs(gutted_string, words):
+   party_words = input(f"Enter the following parts of speech separated by commas: {words}")
+
 
 def merge(bare_template, entered_parts):
     # We want to take in a bare_template and a list of user entered language parts and return a string of the language parts inserted into the template.
@@ -61,8 +64,9 @@ def merge(bare_template, entered_parts):
 
 if __name__ == '__main__':
     welcome()
-    # read_template()
-    # parse_template()
+    read = read_template("assets/dark_and_stormy_night_template.txt")
+    parse = (parse_template(read))
+    print(user_inputs(parse))
     # merge()
     # print (merge("It was a {} and {} {}.", ("dark", "stormy", "night")))
 
