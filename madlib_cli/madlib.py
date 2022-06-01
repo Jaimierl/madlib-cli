@@ -61,6 +61,11 @@ def merge(bare_template, entered_parts):
     #A tuple is iterable - you don't need to make a list.
     return funny_string
 
+def file_save(funny_string):
+    with open ("assets/funny_file.txt", "w") as f:
+        text = f.write(funny_string)
+
+
 
 if __name__ == '__main__':
     welcome()
