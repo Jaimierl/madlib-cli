@@ -49,8 +49,14 @@ def parse_template(template_string):
     return gutted_string, words
     # Note here that by getting this to work with regex, you do NOT need to look at every character in the string to check for the open or close characters. 
 
-def user_inputs(gutted_string, words):
-   party_words = input(f"Enter the following parts of speech separated by commas: {words}")
+def user_inputs(parts_of_speech):
+    wacky_array = []
+    for potato in parts_of_speech:
+        #This is how we iterate through the tuple
+        party_words = input(f"Enter a(n) {potato} : ")
+        wacky_array.append(party_words)
+        #This is how the answers the users give the program are stored.
+    return wacky_array
 
 
 def merge(bare_template, entered_parts):
@@ -60,19 +66,23 @@ def merge(bare_template, entered_parts):
     #The * for the args pretty much lets us move between the curly brackets and iterate through those. This is because the things in the tuple don't have keys for implicit matching
     #A tuple is iterable - you don't need to make a list.
     return funny_string
+    # You could combine this return statement with the busy line above that combines the info
 
 def file_save(funny_string):
     with open ("assets/funny_file.txt", "w") as f:
         text = f.write(funny_string)
 
 
-
 if __name__ == '__main__':
     welcome()
     read = read_template("assets/dark_and_stormy_night_template.txt")
-    parse = (parse_template(read))
-    print(user_inputs(parse))
-    # merge()
+    parenthesis_strings, replace_me = (parse_template(read))
+    #So we can just break up the pieces of what is returned by parse template into these that pretty much come global variables while runnign the code. These two variable are storing gutted_string and words
+    fun_words= (user_inputs(replace_me))
+    maddest_Lib = merge(parenthesis_strings, fun_words)
+    print (maddest_Lib)
+
+    file_save(maddest_Lib)
     # print (merge("It was a {} and {} {}.", ("dark", "stormy", "night")))
 
 
